@@ -29,7 +29,6 @@
 
 #include "extmod/vfs.h"
 #include "extmod/vfs_posix.h"
-#include "extmod/vfs_fat.h"
 #include "extmod/vfs_lfs.h"
 
 #if MICROPY_VFS
