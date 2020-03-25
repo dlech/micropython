@@ -1,6 +1,6 @@
 environment:
   # Python version used
-  MICROPY_CPYTHON3: c:/python34/python.exe
+  MICROPY_CPYTHON3: c:/python35/python.exe
 
 init:
   # Set build version number to commit to be travis-like
