@@ -204,8 +204,9 @@ Raw bytecode (code_info_size=\\d\+, bytecode_size=\\d\+):
 \\d\+ POP_TOP
 \\d\+ LOAD_FAST 0
 \\d\+ LOAD_DEREF 14
+\\d\+ LOAD_CONST_SMALL_INT 1
 \\d\+ LOAD_NULL
-\\d\+ CALL_FUNCTION_VAR_KW n=0 nkw=0
+\\d\+ CALL_FUNCTION_VAR_KW n=1 nkw=0
 \\d\+ POP_TOP
 \\d\+ LOAD_FAST 0
 \\d\+ LOAD_METHOD b
@@ -225,8 +226,9 @@ Raw bytecode (code_info_size=\\d\+, bytecode_size=\\d\+):
 \\d\+ LOAD_FAST 0
 \\d\+ LOAD_METHOD b
 \\d\+ LOAD_FAST 1
+\\d\+ LOAD_CONST_SMALL_INT 1
 \\d\+ LOAD_NULL
-\\d\+ CALL_METHOD_VAR_KW n=0 nkw=0
+\\d\+ CALL_METHOD_VAR_KW n=1 nkw=0
 \\d\+ POP_TOP
 \\d\+ LOAD_FAST 0
 \\d\+ POP_JUMP_IF_FALSE \\d\+
