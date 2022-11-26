@@ -214,7 +214,7 @@ STATIC void mp_setup_code_state_helper(mp_code_state_t *code_state, size_t n_arg
                 if (wanted_arg_name == MP_OBJ_NEW_QSTR(arg_qstr)) {
                     if (code_state_state[n_state - 1 - j] != MP_OBJ_NULL) {
                         mp_raise_msg_varg(&mp_type_TypeError,
-                            MP_ERROR_TEXT("function got multiple values for argument '%q'"), MP_OBJ_QSTR_VALUE(wanted_arg_name));
+                            MP_ERROR_TEXT("function got multiple values for argument '%q' xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"), MP_OBJ_QSTR_VALUE(wanted_arg_name));
                     }
                     code_state_state[n_state - 1 - j] = kwargs[2 * i + 1];
                     goto continue2;
