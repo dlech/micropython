@@ -92,6 +92,12 @@ include $(TOP)/py/mkrules.mk
 
 RUN_TESTS_SKIP += -e math_fun -e float2int_double -e float_parse -e math_domain_special
 
+ifeq ($(MSYSTEM),MINGW32)
+# compliler optimizations break float formatting
+# https://github.com/micropython/micropython/pull/10267
+RUN_TESTS_SKIP += -e format_ints_doubleprec -e format_modulo2_intbig
+endif
+
 test: $(BUILD)/$(PROG) $(TOP)/tests/run-tests.py
 	$(eval DIRNAME=ports/$(notdir $(CURDIR)))
 	cd $(TOP)/tests && MICROPY_MICROPYTHON=../$(DIRNAME)/$(BUILD)/$(PROG) $(PYTHON) ./run-tests.py $(RUN_TESTS_SKIP)
