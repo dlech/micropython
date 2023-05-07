@@ -308,11 +308,9 @@ STATIC mp_obj_t pyb_timer_make_new(const mp_obj_type_t *type, size_t n_args, siz
     mp_arg_check_num(n_args, n_kw, 1, MP_OBJ_FUN_ARGS_MAX, true);
 
     // create new Timer object
-    pyb_timer_obj_t *tim = m_new_obj(pyb_timer_obj_t);
-    memset(tim, 0, sizeof(*tim));
-
-    tim->base.type = &pyb_timer_type;
+    pyb_timer_obj_t *tim = mp_obj_malloc(pyb_timer_obj_t, &pyb_timer_type);
     tim->callback = mp_const_none;
+    memset(&tim->ftm, 0, sizeof(tim->ftm));
     tim->channel = NULL;
 
     // get FTM number

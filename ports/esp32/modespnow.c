@@ -158,8 +158,7 @@ STATIC mp_obj_t espnow_make_new(const mp_obj_type_t *type, size_t n_args,
     if (self != NULL) {
         return self;
     }
-    self = m_new_obj(esp_espnow_obj_t);
-    self->base.type = &esp_espnow_type;
+    self = mp_obj_malloc(esp_espnow_obj_t, &esp_espnow_type);
     self->recv_buffer_size = DEFAULT_RECV_BUFFER_SIZE;
     self->recv_timeout_ms = DEFAULT_RECV_TIMEOUT_MS;
     self->recv_buffer = NULL;       // Buffer is allocated in espnow_init()

@@ -421,8 +421,7 @@ STATIC machine_pin_irq_obj_t *machine_pin_get_irq(mp_hal_pin_obj_t pin) {
 
     // Allocate the IRQ object if it doesn't already exist.
     if (irq == NULL) {
-        irq = m_new_obj(machine_pin_irq_obj_t);
-        irq->base.base.type = &mp_irq_type;
+        irq = mp_obj_malloc(machine_pin_irq_obj_t, &mp_irq_type);
         irq->base.methods = (mp_irq_methods_t *)&machine_pin_irq_methods;
         irq->base.parent = MP_OBJ_FROM_PTR(machine_pin_cpu_pins[pin]);
         irq->base.handler = mp_const_none;

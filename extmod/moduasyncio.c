@@ -160,8 +160,7 @@ STATIC mp_obj_t uasyncio_context = MP_OBJ_NULL;
 
 STATIC mp_obj_t task_make_new(const mp_obj_type_t *type, size_t n_args, size_t n_kw, const mp_obj_t *args) {
     mp_arg_check_num(n_args, n_kw, 1, 2, false);
-    mp_obj_task_t *self = m_new_obj(mp_obj_task_t);
-    self->pairheap.base.type = type;
+    mp_obj_task_t *self = mp_obj_malloc(mp_obj_task_t, type);
     mp_pairheap_init_node(task_lt, &self->pairheap);
     self->coro = args[0];
     self->data = mp_const_none;

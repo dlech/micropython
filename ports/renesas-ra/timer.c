@@ -155,11 +155,12 @@ STATIC mp_obj_t pyb_timer_make_new(const mp_obj_type_t *type, size_t n_args, siz
     pyb_timer_obj_t *tim;
     if (MP_STATE_PORT(pyb_timer_obj_all)[tim_id - 1] == NULL) {
         // create new Timer object
-        tim = m_new_obj(pyb_timer_obj_t);
-        memset(tim, 0, sizeof(*tim));
-        tim->base.type = &pyb_timer_type;
+        tim = mp_malloc_obj(pyb_timer_obj_t, &pyb_timer_type);
         tim->tim_id = tim_id;
         tim->callback = mp_const_none;
+        #if defined(TIMER_CHANNEL)
+        tim->channel = NULL;
+        #endif
         MP_STATE_PORT(pyb_timer_obj_all)[tim_id - 1] = tim;
     } else {
         // reference existing Timer object

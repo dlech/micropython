@@ -944,9 +944,7 @@ STATIC mp_obj_t pyb_timer_make_new(const mp_obj_type_t *type, size_t n_args, siz
     pyb_timer_obj_t *tim;
     if (MP_STATE_PORT(pyb_timer_obj_all)[tim_id - 1] == NULL) {
         // create new Timer object
-        tim = m_new_obj(pyb_timer_obj_t);
-        memset(tim, 0, sizeof(*tim));
-        tim->base.type = &pyb_timer_type;
+        tim = mp_obj_malloc(pyb_timer_obj_t, &pyb_timer_type);
         tim->tim_id = tim_id;
         #if defined(STM32L1)
         tim->is_32bit = tim_id == 5;
@@ -955,8 +953,10 @@ STATIC mp_obj_t pyb_timer_make_new(const mp_obj_type_t *type, size_t n_args, siz
         #endif
         tim->callback = mp_const_none;
         uint32_t ti = tim_instance_table[tim_id - 1];
+        memset(&tim->tim, 0, sizeof(tim->tim));
         tim->tim.Instance = (TIM_TypeDef *)(ti & 0xffffff00);
         tim->irqn = ti & 0xff;
+        tim->channel = NULL;
         MP_STATE_PORT(pyb_timer_obj_all)[tim_id - 1] = tim;
     } else {
         // reference existing Timer object

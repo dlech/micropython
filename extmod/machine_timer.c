@@ -89,8 +89,7 @@ STATIC mp_obj_t machine_timer_init_helper(machine_timer_obj_t *self, size_t n_ar
 }
 
 STATIC mp_obj_t machine_timer_make_new(const mp_obj_type_t *type, size_t n_args, size_t n_kw, const mp_obj_t *args) {
-    machine_timer_obj_t *self = m_new_obj(machine_timer_obj_t);
-    self->pairheap.base.type = &machine_timer_type;
+    machine_timer_obj_t *self = mp_obj_malloc(machine_timer_obj_t, &machine_timer_type);
     self->flags = SOFT_TIMER_FLAG_PY_CALLBACK | SOFT_TIMER_FLAG_GC_ALLOCATED;
     self->delta_ms = 1000;
     self->py_callback = mp_const_none;

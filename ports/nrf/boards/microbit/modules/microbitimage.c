@@ -916,9 +916,8 @@ MP_DEFINE_CONST_OBJ_TYPE(
 
 mp_obj_t microbit_facade_iterator(mp_obj_t iterable_in, mp_obj_iter_buf_t *iter_buf) {
     (void)iter_buf;
-    facade_iterator_t *result = m_new_obj(facade_iterator_t);
+    facade_iterator_t *result = mp_obj_malloc(facade_iterator_t, &microbit_facade_iterator_type);
     string_image_facade_t *iterable = (string_image_facade_t *)iterable_in;
-    result->base.type = &microbit_facade_iterator_type;
     result->string = iterable->string;
     result->image = iterable->image;
     result->index = 0;

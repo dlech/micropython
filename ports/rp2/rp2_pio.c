@@ -825,8 +825,7 @@ STATIC mp_obj_t rp2_state_machine_irq(size_t n_args, const mp_obj_t *pos_args, m
 
     // Allocate the IRQ object if it doesn't already exist.
     if (irq == NULL) {
-        irq = m_new_obj(rp2_state_machine_irq_obj_t);
-        irq->base.base.type = &mp_irq_type;
+        irq = mp_obj_malloc(rp2_state_machine_irq_obj_t, &mp_irq_type);
         irq->base.methods = (mp_irq_methods_t *)&rp2_state_machine_irq_methods;
         irq->base.parent = MP_OBJ_FROM_PTR(self);
         irq->base.handler = mp_const_none;

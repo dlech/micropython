@@ -47,7 +47,6 @@ typedef struct _machine_pin_irq_obj_t {
 } machine_pin_irq_obj_t;
 
 STATIC const mp_irq_methods_t machine_pin_irq_methods;
-const mp_obj_base_t machine_pin_obj_template = {&machine_pin_type};
 
 void machine_pin_deinit(void) {
     for (machine_pin_irq_obj_t *irq = MP_STATE_PORT(machine_pin_irq_list); irq != NULL; irq = irq->next) {
@@ -137,8 +136,7 @@ mp_obj_t mp_pin_make_new(const mp_obj_type_t *type, size_t n_args, size_t n_kw, 
         mp_raise_ValueError(MP_ERROR_TEXT("invalid port"));
     }
 
-    machine_pin_obj_t *pin = m_new_obj(machine_pin_obj_t);
-    pin->base = machine_pin_obj_template;
+    machine_pin_obj_t *pin = mp_obj_malloc(machine_pin_obj_t, &machine_pin_type);
     pin->port = wanted_port;
     pin->pin = wanted_pin;
 
